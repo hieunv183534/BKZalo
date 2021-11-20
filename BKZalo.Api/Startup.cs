@@ -13,12 +13,15 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using System.Security.Claims;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace BKZalo.Api
 {
     public class Startup
     {
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -46,6 +49,18 @@ namespace BKZalo.Api
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(key)),
                     ValidateIssuer = false,
                     ValidateAudience = false
+                };
+                x.Events = new JwtBearerEvents()
+                {
+                    OnTokenValidated = context =>
+                    {
+                        string token = context.Request.Headers["Authorization"];
+                        if (!ValidateTokenClass.ValidateToken(token))
+                        {
+                            context.Fail("Fail okok");
+                        }
+                        return Task.CompletedTask;
+                    }
                 };
             });
 
