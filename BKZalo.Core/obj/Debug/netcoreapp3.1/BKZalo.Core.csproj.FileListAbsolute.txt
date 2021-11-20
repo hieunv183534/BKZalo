@@ -1,0 +1,9 @@
+C:\Users\Admin\Desktop\DaNenTang\BKZalo.Api\BKZalo.Core\bin\Debug\netcoreapp3.1\BKZalo.Core.deps.json
+C:\Users\Admin\Desktop\DaNenTang\BKZalo.Api\BKZalo.Core\bin\Debug\netcoreapp3.1\BKZalo.Core.dll
+C:\Users\Admin\Desktop\DaNenTang\BKZalo.Api\BKZalo.Core\bin\Debug\netcoreapp3.1\BKZalo.Core.pdb
+C:\Users\Admin\Desktop\DaNenTang\BKZalo.Api\BKZalo.Core\obj\Debug\netcoreapp3.1\BKZalo.Core.csproj.AssemblyReference.cache
+C:\Users\Admin\Desktop\DaNenTang\BKZalo.Api\BKZalo.Core\obj\Debug\netcoreapp3.1\BKZalo.Core.AssemblyInfoInputs.cache
+C:\Users\Admin\Desktop\DaNenTang\BKZalo.Api\BKZalo.Core\obj\Debug\netcoreapp3.1\BKZalo.Core.AssemblyInfo.cs
+C:\Users\Admin\Desktop\DaNenTang\BKZalo.Api\BKZalo.Core\obj\Debug\netcoreapp3.1\BKZalo.Core.csproj.CoreCompileInputs.cache
+C:\Users\Admin\Desktop\DaNenTang\BKZalo.Api\BKZalo.Core\obj\Debug\netcoreapp3.1\BKZalo.Core.dll
+C:\Users\Admin\Desktop\DaNenTang\BKZalo.Api\BKZalo.Core\obj\Debug\netcoreapp3.1\BKZalo.Core.pdb
