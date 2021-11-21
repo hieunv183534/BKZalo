@@ -4,7 +4,7 @@ using System.Text;
 
 namespace BKZalo.Core.Entities
 {
-    public class Comment
+    public class Comment : BaseEntity
     {
         #region Property
 

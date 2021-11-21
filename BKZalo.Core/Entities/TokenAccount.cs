@@ -4,7 +4,7 @@ using System.Text;
 
 namespace BKZalo.Core.Entities
 {
-    public class TokenAccount
+    public class TokenAccount : BaseEntity
     {
 
         public TokenAccount(string phoneNumber, string token)

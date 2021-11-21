@@ -4,7 +4,7 @@ using System.Text;
 
 namespace BKZalo.Core.Entities
 {
-    public class Block
+    public class Block : BaseEntity
     {
         public Guid BlockId { get; set; }
 

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace BKZalo.Core.Entities
 {
-    public class Friend
+    public class Friend : BaseEntity
     {
         #region Property
 

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace BKZalo.Core.Entities
 {
-    public class Post
+    public class Post : BaseEntity
     {
         #region Property
 

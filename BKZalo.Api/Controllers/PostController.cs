@@ -186,5 +186,23 @@ namespace BKZalo.Api.Controllers
                 return StatusCode(500, new ResponseModel(9999, "Exception Error", new { msg = ex.Message }));
             }
         }
+
+
+
+        [HttpGet("get_list_post")]
+        public IActionResult GetListPost([FromQuery] int index, [FromQuery] int count)
+        {
+            var phoneNumber = User.FindFirstValue(ClaimTypes.Name);
+            var acc = (Account)_accountService.GetByProp("PhoneNumber", phoneNumber).Response.Data;
+            var serviceResult = _postService1.GetListPost(index, count, acc.AccountId);
+            return StatusCode(serviceResult.StatusCode, serviceResult.Response);
+        }
+
+        [HttpGet("check_new_item")]
+        public IActionResult CheckNewItem([FromQuery] Guid lastId)
+        {
+            var serviceResult = _postService1.CheckNewItem(lastId);
+            return StatusCode(serviceResult.StatusCode, serviceResult.Response);
+        }
     }
 }

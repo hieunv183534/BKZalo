@@ -38,5 +38,32 @@ namespace BKZalo.Infrastructure.Repositories
                 return id;
             }
         }
+
+        public int CheckNewItem(DateTime lastTimeStamp)
+        {
+            using (var dbConnection = DatabaseConnection.DbConnection)
+            {
+                DynamicParameters parameters = new DynamicParameters();
+                parameters.Add($"@LastTimeStamp", lastTimeStamp);
+                var procName = $"Proc_CheckNewPost";
+                var posts = dbConnection.Query<Post>(procName, param: parameters, commandType: CommandType.StoredProcedure);
+                var newItems = posts.AsList<Post>().Count;
+                return newItems;
+            }
+        }
+
+        public List<Post> GetListPost(int index, int count)
+        {
+            using (var dbConnection = DatabaseConnection.DbConnection)
+            {
+                DynamicParameters parameters = new DynamicParameters();
+                parameters.Add("@Indexx", index);
+                parameters.Add("@Count", count);
+                var procName = $"Proc_GetPagingPost";
+
+                var posts = dbConnection.Query<Post>(procName, param: parameters, commandType: CommandType.StoredProcedure);
+                return (List<Post>)posts;
+            }
+        }
     }
 }

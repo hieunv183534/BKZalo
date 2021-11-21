@@ -39,7 +39,7 @@ namespace BKZalo.Api.Authentication
                 {
                     new Claim(ClaimTypes.Name, phoneNumber)
                 }),
-                Expires = DateTime.UtcNow.AddHours(12),
+                Expires = DateTime.UtcNow.AddDays(30),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(tokenKey), SecurityAlgorithms.HmacSha256Signature)
             };
 
