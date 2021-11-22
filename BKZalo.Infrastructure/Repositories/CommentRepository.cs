@@ -38,5 +38,19 @@ namespace BKZalo.Infrastructure.Repositories
                 return id;
             }
         }
+
+        public List<Comment> GetComment(Guid postId, int index, int count)
+        {
+            using (var dbConnection = DatabaseConnection.DbConnection)
+            {
+                DynamicParameters parameters = new DynamicParameters();
+                parameters.Add($"@PostId", postId);
+                parameters.Add($"@Indexx", index);
+                parameters.Add($"@Count", count);
+                var procName = $"Proc_GetComment";
+                var comments = dbConnection.Query<Comment>(procName, param: parameters, commandType: CommandType.StoredProcedure);
+                return (List<Comment>)comments;
+            }
+        }
     }
 }

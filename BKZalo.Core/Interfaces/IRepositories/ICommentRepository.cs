@@ -8,5 +8,7 @@ namespace BKZalo.Core.Interfaces.IRepositories
     public interface ICommentRepository
     {
         Guid Add(Comment comment);
+
+        List<Comment> GetComment(Guid postId, int index, int count);
     }
 }

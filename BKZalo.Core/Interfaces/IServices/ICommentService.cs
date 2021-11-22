@@ -7,5 +7,6 @@ namespace BKZalo.Core.Interfaces.IServices
 {
     public interface ICommentService : IBaseService<Comment>
     {
+        ServiceResult GetComment(Guid postId, int index, int count);
     }
 }

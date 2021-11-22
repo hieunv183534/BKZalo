@@ -12,14 +12,16 @@ namespace BKZalo.Core.Services
         #region Declare
 
         ICommentRepository _commentRepository;
+        IBaseRepository<Account> _accountRepository;
 
         #endregion
 
         #region Constructor
 
-        public CommentService(ICommentRepository commentRepository, IBaseRepository<Comment> baseRepository) : base(baseRepository)
+        public CommentService(ICommentRepository commentRepository, IBaseRepository<Comment> baseRepository, IBaseRepository<Account> accountRepository) : base(baseRepository)
         {
             _commentRepository = commentRepository;
+            _accountRepository = accountRepository;
         }
 
         #endregion
@@ -59,6 +61,47 @@ namespace BKZalo.Core.Services
                 _serviceResult.StatusCode = 500;
                 return _serviceResult;
             }
+        }
+
+        public ServiceResult GetComment(Guid postId, int index, int count)
+        {
+            try
+            {
+                // xử lí nghiệp vụ lấy dữ liệu
+                // lấy tất cả dữ liệu từ db
+                var comments = _commentRepository.GetComment(postId, index, count);
+                if (comments.Count > 0)
+                {
+                    comments = CompleteListComment(comments);
+                    _serviceResult.Response = new ResponseModel(1000, "OK", comments);
+                    _serviceResult.StatusCode = 200;
+                    return _serviceResult;
+                }
+                else
+                {
+                    _serviceResult.Response = new ResponseModel(9994, "No data or end of list data");
+                    _serviceResult.StatusCode = 204;
+                    return _serviceResult;
+                }
+            }
+            catch (Exception ex)
+            {
+                _serviceResult.Response = new ResponseModel(9999, "Exception Error", new { msg = ex.Message });
+                _serviceResult.StatusCode = 500;
+                return _serviceResult;
+            }
+        }
+
+        public List<Comment> CompleteListComment(List<Comment> comments)
+        {
+            for(int i=0; i<comments.Count; i++)
+            {
+                var accountId = comments[i].AccountId;
+                comments[i].Poster = _accountRepository.GetById(accountId);
+                comments[i].Poster.Password = "xxxxxx";
+                comments[i].Poster.PhoneNumber = "xxxxxx";
+            }
+            return comments;
         }
     }
 }

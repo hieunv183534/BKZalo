@@ -99,5 +99,13 @@ namespace BKZalo.Api.Controllers
                 return StatusCode(401, new ResponseModel(1009, "Not Access", null));
             }
         }
+
+
+        [HttpGet("get_comment")]
+        public IActionResult GetComment([FromQuery] Guid postId,[FromQuery] int index, [FromQuery] int count)
+        {
+            var serviceResult = _commentService1.GetComment(postId, index, count);
+            return StatusCode(serviceResult.StatusCode, serviceResult.Response);
+        }
     }
 }

@@ -6,6 +6,13 @@ namespace BKZalo.Core.Entities
 {
     public class Friend : BaseEntity
     {
+        public Friend(Guid idA, Guid idB, bool isFriend)
+        {
+            this.IdA = idA;
+            this.IdB = idB;
+            this.IsFriend = isFriend;
+        }
+
         #region Property
 
         public Guid FriendId { get; set; }
