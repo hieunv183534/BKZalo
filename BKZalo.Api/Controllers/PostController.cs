@@ -169,14 +169,26 @@ namespace BKZalo.Api.Controllers
                         post.AllAccountIdLiked += " ";
                         post.AllAccountIdLiked.Replace(acc.AccountId.ToString()+" ", "");
                         post.AllAccountIdLiked = post.AllAccountIdLiked.Trim();
-                        int like = post.AllAccountIdLiked.Split(" ").Count();
-                        return StatusCode(200, new ResponseModel(1000, "OK", new { like = like }));
+
+                        var serviceResult = _postService.Update(post, postId);
+                        if (serviceResult.StatusCode == 201)
+                        {
+                            int like = post.AllAccountIdLiked.Split(" ").Count();
+                            return StatusCode(200, new ResponseModel(1000, "OK", new { like = like }));
+                        }
+                        return StatusCode(serviceResult.StatusCode, serviceResult.Response);
+                        
                     }
                     else
                     {
                         post.AllAccountIdLiked += $" {acc.AccountId.ToString()}";
-                        int like = post.AllAccountIdLiked.Split(" ").Count();
-                        return StatusCode(200, new ResponseModel(1000, "OK", new { like = like }));
+                        var serviceResult = _postService.Update(post, postId);
+                        if (serviceResult.StatusCode == 201)
+                        {
+                            int like = post.AllAccountIdLiked.Split(" ").Count();
+                            return StatusCode(200, new ResponseModel(1000, "OK", new { like = like }));
+                        }
+                        return StatusCode(serviceResult.StatusCode, serviceResult.Response);
                     }
                 }
 

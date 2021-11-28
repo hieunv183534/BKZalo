@@ -60,7 +60,7 @@ namespace BKZalo.Core.Services
                 if(friends.Count > 0)
                 {
                     var accounts = CompleteListFriend(friends,userId);
-                    _serviceResult.Response = new ResponseModel(1000, "OK", friends);
+                    _serviceResult.Response = new ResponseModel(1000, "OK", accounts);
                     _serviceResult.StatusCode = 200;
                     return _serviceResult;
                 }
@@ -83,11 +83,12 @@ namespace BKZalo.Core.Services
         {
             try
             {
-                var friends = _friendRepository.GetRequestedFriend(userId,index,count);
+                var friends = _friendRepository.GetUserFriends(userId, index, count);
                 if (friends.Count > 0)
                 {
                     var accounts = CompleteListFriend(friends, userId);
-                    _serviceResult.Response = new ResponseModel(1000, "OK", friends);
+                    var total = _friendRepository.GetCountUserFriends(userId);
+                    _serviceResult.Response = new ResponseModel(1000, "OK", new { friends = accounts , total = total });
                     _serviceResult.StatusCode = 200;
                     return _serviceResult;
                 }
@@ -127,6 +128,23 @@ namespace BKZalo.Core.Services
                 }
             }
             return accounts;
+        }
+
+        public ServiceResult GetCountRequestedOfUser(Guid userId)
+        {
+            try
+            {
+                var numberOfRequested = _friendRepository.GetCountRequestedOfUser(userId);
+                _serviceResult.Response = new ResponseModel(1000, "OK", new { requested_friends = numberOfRequested });
+                _serviceResult.StatusCode = 200;
+                return _serviceResult;
+            }
+            catch (Exception ex)
+            {
+                _serviceResult.Response = new ResponseModel(9999, "Exception Error", new { msg = ex.Message });
+                _serviceResult.StatusCode = 500;
+                return _serviceResult;
+            }
         }
     }
 }

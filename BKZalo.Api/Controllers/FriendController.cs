@@ -51,6 +51,11 @@ namespace BKZalo.Api.Controllers
                 return StatusCode(400, new ResponseModel(9995, "User is not validated", null));
             }
             var serviceResult = _friendService.Add(new Friend(acc.AccountId, user_id, false));
+            if(serviceResult.StatusCode == 201)
+            {
+                var sr = _friendService1.GetCountRequestedOfUser(acc.AccountId);
+                return StatusCode(sr.StatusCode, sr.Response);
+            }
             return StatusCode(serviceResult.StatusCode, serviceResult.Response);
         }
 
@@ -64,12 +69,11 @@ namespace BKZalo.Api.Controllers
             {
                 return StatusCode(400, new ResponseModel(1004, "Cannot accept friend yourself", null));
             }
-            var sr = _friendService1.GetFriend(acc.AccountId, user_id);
+            var sr = _friendService1.GetFriend(user_id, acc.AccountId);
             if(sr.StatusCode != 200)
             {
                 return StatusCode(sr.StatusCode,sr.Response);
             }
-
             Friend friend = (Friend)sr.Response.Data;
             if (is_accept)
             {
@@ -84,6 +88,7 @@ namespace BKZalo.Api.Controllers
             }
         }
 
+
         [HttpGet("get_requested_friend")]
         public IActionResult GetRequestedFriend([FromQuery] int index, [FromQuery] int count)
         {
@@ -92,6 +97,7 @@ namespace BKZalo.Api.Controllers
             var serviceResult = _friendService1.GetRequestedFriend(acc.AccountId,index,count);
             return StatusCode(serviceResult.StatusCode, serviceResult.Response);
         }
+
 
         [HttpGet("get_user_friends")]
         public IActionResult GetUserFriends([FromQuery] Guid user_id, [FromQuery] int index, [FromQuery] int count)

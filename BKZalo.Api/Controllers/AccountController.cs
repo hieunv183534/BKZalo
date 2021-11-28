@@ -86,13 +86,21 @@ namespace BKZalo.Api.Controllers
         /// <param name="newPassword"></param>
         /// <returns></returns>
         [HttpPost("change_password")]
-        public IActionResult ChangePassword([FromQuery] string newPassword)
+        public IActionResult ChangePassword([FromQuery] string password, [FromQuery] string newPassword)
         {
             var phoneNumber = User.FindFirstValue(ClaimTypes.Name);
             var acc = (Account)_accountService.GetByProp("PhoneNumber", phoneNumber).Response.Data;
-            acc.Password = newPassword;
-            var serviceResult = _accountService.Update(acc, acc.AccountId);
-            return StatusCode(serviceResult.StatusCode, serviceResult.Response);
+            if(acc.Password == password)
+            {
+                acc.Password = newPassword;
+                var serviceResult = _accountService.Update(acc, acc.AccountId);
+                return StatusCode(serviceResult.StatusCode, serviceResult.Response);
+            }
+            else
+            {
+                return StatusCode(400, new ResponseModel(1009, "Password incorrect!"));
+            }
+            
         }
 
         /// <summary>

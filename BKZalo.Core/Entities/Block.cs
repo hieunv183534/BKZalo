@@ -8,8 +8,8 @@ namespace BKZalo.Core.Entities
     {
         public Guid BlockId { get; set; }
 
-        public Guid IdBlock { get; set; }
+        public Guid BlockFromId { get; set; }
 
-        public Guid IdBlocked { get; set; }
+        public Guid BlockToId { get; set; }
     }
 }

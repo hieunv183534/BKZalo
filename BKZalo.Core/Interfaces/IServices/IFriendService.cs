@@ -12,5 +12,7 @@ namespace BKZalo.Core.Interfaces.IServices
         ServiceResult GetRequestedFriend(Guid userId,int index, int count);
 
         ServiceResult GetUserFriends(Guid userId, int index, int count);
+
+        ServiceResult GetCountRequestedOfUser(Guid userId);
     }
 }

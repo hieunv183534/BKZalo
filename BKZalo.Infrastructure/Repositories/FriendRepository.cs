@@ -10,6 +10,31 @@ namespace BKZalo.Infrastructure.Repositories
 {
     public class FriendRepository : IFriendRepository
     {
+
+        public int GetCountRequestedOfUser(Guid userId)
+        {
+            using (var dbConnection = DatabaseConnection.DbConnection)
+            {
+                DynamicParameters parameters = new DynamicParameters();
+                parameters.Add($"@IdA", userId);
+                var procName = $"Proc_GetCountRequested";
+                int count = dbConnection.QueryFirstOrDefault(procName, param: parameters, commandType: CommandType.StoredProcedure).Cnt;
+                return count;
+            }
+        }
+
+        public int GetCountUserFriends(Guid userId)
+        {
+            using (var dbConnection = DatabaseConnection.DbConnection)
+            {
+                DynamicParameters parameters = new DynamicParameters();
+                parameters.Add($"@UserId", userId);
+                var procName = $"Proc_GetCountUserFriends";
+                int count = dbConnection.QueryFirstOrDefault(procName, param: parameters, commandType: CommandType.StoredProcedure).Cnt;
+                return count;
+            }
+        }
+
         public Friend GetFriend(Guid idA, Guid idB)
         {
             using (var dbConnection = DatabaseConnection.DbConnection)
