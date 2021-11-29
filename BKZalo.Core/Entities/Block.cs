@@ -6,6 +6,11 @@ namespace BKZalo.Core.Entities
 {
     public class Block : BaseEntity
     {
+        public Block()
+        {
+
+        }
+
         public Guid BlockId { get; set; }
 
         public Guid BlockFromId { get; set; }

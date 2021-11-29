@@ -6,6 +6,12 @@ namespace BKZalo.Core.Entities
 {
     public class Comment : BaseEntity
     {
+
+        public Comment()
+        {
+
+        }
+
         #region Property
 
         public Guid CommentId { get; set; }

@@ -39,3 +39,4 @@ C:\Users\Admin\Desktop\DaNenTang\BKZalo.Api\BKZalo.Api\bin\Debug\netcoreapp3.1\M
 C:\Users\Admin\Desktop\DaNenTang\BKZalo.Api\BKZalo.Api\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Tokens.dll
 C:\Users\Admin\Desktop\DaNenTang\BKZalo.Api\BKZalo.Api\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
 C:\Users\Admin\Desktop\DaNenTang\BKZalo.Api\BKZalo.Api\bin\Debug\netcoreapp3.1\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\Admin\Desktop\DaNenTang\BKZalo.Api\BKZalo.Api\bin\Debug\netcoreapp3.1\System.Net.WebSockets.WebSocketProtocol.dll

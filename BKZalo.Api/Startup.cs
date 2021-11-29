@@ -1,4 +1,5 @@
 ﻿using BKZalo.Api.Authentication;
+using BKZalo.Api.Hubs;
 using BKZalo.Core.Entities;
 using BKZalo.Core.Interfaces.IRepositories;
 using BKZalo.Core.Interfaces.IServices;
@@ -66,7 +67,16 @@ namespace BKZalo.Api
 
             services.AddScoped(typeof(IJwtAuthenticationManager), typeof(JwtAuthenticationManager));
 
+            services.AddSignalR();
 
+            services.AddCors(options => options.AddPolicy("CorsPolicy",
+                    builder =>
+                    {
+                        builder.AllowAnyHeader()
+                               .AllowAnyMethod()
+                               .SetIsOriginAllowed((host) => true)
+                               .AllowCredentials();
+                    }));
 
             services.AddSwaggerGen(c =>
             {
@@ -84,6 +94,10 @@ namespace BKZalo.Api
             // ti�m comment
             services.AddScoped(typeof(ICommentRepository), typeof(CommentRepository));
             services.AddScoped(typeof(ICommentService), typeof(CommentService));
+
+            // ti�m friend
+            services.AddScoped(typeof(IFriendRepository), typeof(FriendRepository));
+            services.AddScoped(typeof(IFriendService), typeof(FriendService));
 
         }
 
@@ -106,6 +120,8 @@ namespace BKZalo.Api
 
             app.UseRouting();
 
+            app.UseCors("CorsPolicy");
+
             app.UseAuthentication();
 
             app.UseAuthorization();
@@ -113,6 +129,7 @@ namespace BKZalo.Api
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapHub<ChatHub>("/chat");
             });
         }
     }

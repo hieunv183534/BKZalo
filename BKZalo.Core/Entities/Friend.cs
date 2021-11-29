@@ -13,6 +13,11 @@ namespace BKZalo.Core.Entities
             this.IsFriend = isFriend;
         }
 
+        public Friend()
+        {
+
+        }
+
         #region Property
 
         public Guid FriendId { get; set; }

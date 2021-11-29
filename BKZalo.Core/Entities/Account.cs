@@ -6,6 +6,12 @@ namespace BKZalo.Core.Entities
 {
     public class Account : BaseEntity
     {
+
+        public Account()
+        {
+
+        }
+
         #region Property
 
         public Guid AccountId { get; set; }

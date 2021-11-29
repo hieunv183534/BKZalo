@@ -6,6 +6,10 @@ namespace BKZalo.Core.Entities
 {
     public class Report : BaseEntity
     {
+        public Report()
+        {
+
+        }
 
         public Report(Guid postId, Guid accountId, int subject, string details)
         {

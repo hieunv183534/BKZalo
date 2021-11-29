@@ -13,6 +13,11 @@ namespace BKZalo.Core.Entities
             this.Token = token;
         }
 
+        public TokenAccount()
+        {
+
+        }
+
         #region Property
 
         public string PhoneNumber { get; set; }

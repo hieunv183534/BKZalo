@@ -6,6 +6,11 @@ namespace BKZalo.Core.Entities
 {
     public class Post : BaseEntity
     {
+        public Post()
+        {
+
+        }
+
         #region Property
 
         public Guid PostId { get; set; }
