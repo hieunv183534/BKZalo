@@ -10,3 +10,16 @@ C:\Users\Admin\Desktop\DaNenTang\BKZalo.Api\BKZalo.Infrastructure\obj\Debug\netc
 C:\Users\Admin\Desktop\DaNenTang\BKZalo.Api\BKZalo.Infrastructure\obj\Debug\netcoreapp3.1\BKZalo.Infrastructure.csproj.CopyComplete
 C:\Users\Admin\Desktop\DaNenTang\BKZalo.Api\BKZalo.Infrastructure\obj\Debug\netcoreapp3.1\BKZalo.Infrastructure.dll
 C:\Users\Admin\Desktop\DaNenTang\BKZalo.Api\BKZalo.Infrastructure\obj\Debug\netcoreapp3.1\BKZalo.Infrastructure.pdb
+C:\Users\Hi\Desktop\BKZalo\BKZalo.Infrastructure\bin\Debug\netcoreapp3.1\BKZalo.Infrastructure.deps.json
+C:\Users\Hi\Desktop\BKZalo\BKZalo.Infrastructure\bin\Debug\netcoreapp3.1\BKZalo.Infrastructure.dll
+C:\Users\Hi\Desktop\BKZalo\BKZalo.Infrastructure\bin\Debug\netcoreapp3.1\BKZalo.Infrastructure.pdb
+C:\Users\Hi\Desktop\BKZalo\BKZalo.Infrastructure\bin\Debug\netcoreapp3.1\BKZalo.Core.dll
+C:\Users\Hi\Desktop\BKZalo\BKZalo.Infrastructure\bin\Debug\netcoreapp3.1\BKZalo.Core.pdb
+C:\Users\Hi\Desktop\BKZalo\BKZalo.Infrastructure\obj\Debug\netcoreapp3.1\BKZalo.Infrastructure.csproj.AssemblyReference.cache
+C:\Users\Hi\Desktop\BKZalo\BKZalo.Infrastructure\obj\Debug\netcoreapp3.1\BKZalo.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Hi\Desktop\BKZalo\BKZalo.Infrastructure\obj\Debug\netcoreapp3.1\BKZalo.Infrastructure.AssemblyInfoInputs.cache
+C:\Users\Hi\Desktop\BKZalo\BKZalo.Infrastructure\obj\Debug\netcoreapp3.1\BKZalo.Infrastructure.AssemblyInfo.cs
+C:\Users\Hi\Desktop\BKZalo\BKZalo.Infrastructure\obj\Debug\netcoreapp3.1\BKZalo.Infrastructure.csproj.CoreCompileInputs.cache
+C:\Users\Hi\Desktop\BKZalo\BKZalo.Infrastructure\obj\Debug\netcoreapp3.1\BKZalo.Infrastructure.csproj.CopyComplete
+C:\Users\Hi\Desktop\BKZalo\BKZalo.Infrastructure\obj\Debug\netcoreapp3.1\BKZalo.Infrastructure.dll
+C:\Users\Hi\Desktop\BKZalo\BKZalo.Infrastructure\obj\Debug\netcoreapp3.1\BKZalo.Infrastructure.pdb
