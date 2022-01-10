@@ -103,6 +103,9 @@ namespace BKZalo.Core.Services
                     posts[i].IsLiked = posts[i].AllAccountIdLiked.Contains(accountId.ToString());
                 }
 
+                // lấy số comment cho post
+                posts[i].Comment = _postRepository.GetCommentCount(posts[i].PostId);
+
                 posts[i].MediaUrls = posts[i].AllMediaUrl.Split(" ").ToList<String>();
 
                 posts[i].Author = _accountRepository.GetById(posts[i].AccountId);

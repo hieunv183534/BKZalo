@@ -83,6 +83,20 @@ namespace BKZalo.Api.Controllers
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="account"></param>
+        /// <returns></returns>
+        [HttpGet("getAccountByPhoneNumber/{sdt}")]
+        public IActionResult GetAccountByPhoneNumber([FromRoute] string sdt)
+        {
+            var serviceResult = _accountService.GetByProp("PhoneNumber", sdt);
+            var acc = (Account)serviceResult.Response.Data;
+            acc.Password = "xxx";
+            return StatusCode(serviceResult.StatusCode, serviceResult.Response);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
         /// <param name="newPassword"></param>
         /// <returns></returns>
         [HttpPost("change_password")]
@@ -113,7 +127,18 @@ namespace BKZalo.Api.Controllers
         {
             var phoneNumber = User.FindFirstValue(ClaimTypes.Name);
             var acc = (Account)_accountService.GetByProp("PhoneNumber", phoneNumber).Response.Data;
-            var serviceResult = _accountService.Update(account, acc.AccountId);
+
+            if (!String.IsNullOrEmpty(account.UserName))
+            {
+                acc.UserName = account.UserName;
+            }
+
+            if(!String.IsNullOrEmpty(account.AvatarUrl))
+            {
+                acc.AvatarUrl = account.AvatarUrl;
+            }
+
+            var serviceResult = _accountService.Update(acc, acc.AccountId);
             return StatusCode(serviceResult.StatusCode, serviceResult.Response);
         }
     }

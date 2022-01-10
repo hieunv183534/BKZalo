@@ -18,7 +18,7 @@ namespace BKZalo.Infrastructure.Repositories
                 parameters.Add("@ConversationId", conversationId);
                 var procName = $"Proc_GetLastMessage";
 
-                var message = dbConnection.QueryFirstOrDefault(procName, param: parameters, commandType: CommandType.StoredProcedure);
+                var message = dbConnection.QueryFirstOrDefault<Message>(procName, param: parameters, commandType: CommandType.StoredProcedure);
                 return message;
             }
         }

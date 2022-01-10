@@ -12,5 +12,7 @@ namespace BKZalo.Core.Interfaces.IRepositories
         List<Post> GetListPost(int index, int count);
 
         int CheckNewItem(DateTime lastTimeStamp);
+
+        int GetCommentCount(Guid postId);
     }
 }

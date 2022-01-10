@@ -52,6 +52,18 @@ namespace BKZalo.Infrastructure.Repositories
             }
         }
 
+        public int GetCommentCount(Guid postId)
+        {
+            using (var dbConnection = DatabaseConnection.DbConnection)
+            {
+                DynamicParameters parameters = new DynamicParameters();
+                parameters.Add($"@PostId", postId.ToString());
+                var sql = $"SELECT COUNT(*) AS Cnt FROM comment c WHERE c.PostId = @PostId";
+                int commentCount = (int)dbConnection.QueryFirstOrDefault(sql, param: parameters).Cnt;
+                return commentCount;
+            }
+        }
+
         public List<Post> GetListPost(int index, int count)
         {
             using (var dbConnection = DatabaseConnection.DbConnection)

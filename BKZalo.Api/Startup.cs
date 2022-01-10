@@ -99,6 +99,10 @@ namespace BKZalo.Api
             services.AddScoped(typeof(IFriendRepository), typeof(FriendRepository));
             services.AddScoped(typeof(IFriendService), typeof(FriendService));
 
+            // ti�m friend
+            services.AddScoped(typeof(IConversationService), typeof(ConversationService));
+            services.AddScoped(typeof(IConversationRepository), typeof(ConversationRepository));
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

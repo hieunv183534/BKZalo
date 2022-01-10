@@ -50,7 +50,16 @@ namespace BKZalo.Api.Controllers
             {
                 return StatusCode(400, new ResponseModel(9995, "User is not validated", null));
             }
-            var serviceResult = _friendService.Add(new Friend(acc.AccountId, user_id, false));
+            ServiceResult serviceResult;
+            try
+            {
+                serviceResult = _friendService.Add(new Friend(acc.AccountId, user_id, false));
+
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(400, new ResponseModel(1004, "Duplicate friend request!", null));
+            }
             if(serviceResult.StatusCode == 201)
             {
                 var sr = _friendService1.GetCountRequestedOfUser(acc.AccountId);
