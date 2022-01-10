@@ -174,7 +174,7 @@ namespace BKZalo.Api.Controllers
                         if (serviceResult.StatusCode == 201)
                         {
                             int like = post.AllAccountIdLiked.Split(" ").Count();
-                            return StatusCode(200, new ResponseModel(1000, "OK", new { like = like }));
+                            return StatusCode(200, new ResponseModel(1000, "OK", new { like = like==1?0:like }));
                         }
                         return StatusCode(serviceResult.StatusCode, serviceResult.Response);
                         

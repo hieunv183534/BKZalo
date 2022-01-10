@@ -27,10 +27,11 @@ namespace BKZalo.Api.Controllers
 
         #region Consstructor
 
-        public CommentController(IBaseService<Comment> commentService, IBaseService<Account> accountService)
+        public CommentController(IBaseService<Comment> commentService, IBaseService<Account> accountService, ICommentService commentService1)
         {
             _commentService = commentService;
             _accountService = accountService;
+            _commentService1 = commentService1;
         }
 
         #endregion
