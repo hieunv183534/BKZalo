@@ -83,6 +83,20 @@ namespace BKZalo.Api.Controllers
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="account"></param>
+        /// <returns></returns>
+        [HttpGet("getAccountByPhoneNumber/{sdt}")]
+        public IActionResult GetAccountByPhoneNumber([FromRoute] string sdt)
+        {
+            var serviceResult = _accountService.GetByProp("PhoneNumber", sdt);
+            var acc = (Account)serviceResult.Response.Data;
+            acc.Password = "xxx";
+            return StatusCode(serviceResult.StatusCode, serviceResult.Response);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
         /// <param name="newPassword"></param>
         /// <returns></returns>
         [HttpPost("change_password")]

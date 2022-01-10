@@ -10,7 +10,17 @@
       "ProjectGuid": "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3",
       "DisplayName": "Miscellaneous Files",
       "ColorIndex": -1
+    },
+    "e7968fd8-c2b1-474f-8326-02b857735375": {
+      "ProjectGuid": "e7968fd8-c2b1-474f-8326-02b857735375",
+      "DisplayName": "BKZalo.Core",
+      "ColorIndex": 1
+    },
+    "f5110bdf-dfc1-4d90-ad66-37bd6110efc2": {
+      "ProjectGuid": "f5110bdf-dfc1-4d90-ad66-37bd6110efc2",
+      "DisplayName": "BKZalo.Infrastructure",
+      "ColorIndex": 2
     }
   },
-  "NextColorIndex": 1
+  "NextColorIndex": 3
 }

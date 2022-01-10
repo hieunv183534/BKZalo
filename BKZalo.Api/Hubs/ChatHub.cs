@@ -37,9 +37,10 @@ namespace BKZalo.Api.Hubs
             else
             {
                 Conversation conversation = (Conversation)serviceResult.Response.Data;
-                if (conversation.AllMemberId.Contains(acc.AccountId.ToString()))
+
+                if (!conversation.AllMemberId.Contains(acc.AccountId.ToString()))
                 {
-                    await Clients.Caller.SendAsync("onmessage", "botSystem", "You can't join this conversation!");
+                    await Clients.Caller.SendAsync("onmessage", "botSystem", $"conserId= {conversation.ConversationId} allMember= {conversation.AllMemberId} myId={acc.AccountId}");
                 }
                 else
                 {
@@ -80,7 +81,7 @@ namespace BKZalo.Api.Hubs
                     }
                     else
                     {
-                        await Clients.Group(conversation.ConversationId.ToString()).SendAsync("onmessage", $"{acc.UserName}", message);
+                        await Clients.Group(conversation.ConversationId.ToString()).SendAsync("onCreatedConversation", message);
                     }
                 }
             }
@@ -94,7 +95,7 @@ namespace BKZalo.Api.Hubs
                 else
                 {
                     Conversation conversation = (Conversation)serviceResult.Response.Data;
-                    if (conversation.AllMemberId.Contains(acc.AccountId.ToString()))
+                    if (!conversation.AllMemberId.Contains(acc.AccountId.ToString()))
                     {
                         await Clients.Caller.SendAsync("onmessage", "botSystem", "You can't send to this conversation!");
                     }
@@ -106,7 +107,7 @@ namespace BKZalo.Api.Hubs
                         var sr = _messageService.Add(message);
                         if (sr.StatusCode != 201)
                         {
-                            await Clients.Caller.SendAsync("onmessage", "botSystem", "Error 500!");
+                            await Clients.Caller.SendAsync("onmessage", "botSystem", $"500 {sr.Response.Data}");
                         }
                         else
                         {

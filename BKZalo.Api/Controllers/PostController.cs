@@ -167,7 +167,7 @@ namespace BKZalo.Api.Controllers
                     if (post.AllAccountIdLiked.Contains(acc.AccountId.ToString()))
                     {
                         post.AllAccountIdLiked += " ";
-                        post.AllAccountIdLiked.Replace(acc.AccountId.ToString()+" ", "");
+                        post.AllAccountIdLiked = post.AllAccountIdLiked.Replace(acc.AccountId.ToString()+" ", "");
                         post.AllAccountIdLiked = post.AllAccountIdLiked.Trim();
 
                         var serviceResult = _postService.Update(post, postId);

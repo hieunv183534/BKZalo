@@ -18,7 +18,7 @@ namespace BKZalo.Infrastructure.Repositories
                 DynamicParameters parameters = new DynamicParameters();
                 parameters.Add($"@IdA", userId);
                 var procName = $"Proc_GetCountRequested";
-                int count = dbConnection.QueryFirstOrDefault(procName, param: parameters, commandType: CommandType.StoredProcedure).Cnt;
+                int count = (int)dbConnection.QueryFirstOrDefault(procName, param: parameters, commandType: CommandType.StoredProcedure).Cnt;
                 return count;
             }
         }
@@ -30,7 +30,7 @@ namespace BKZalo.Infrastructure.Repositories
                 DynamicParameters parameters = new DynamicParameters();
                 parameters.Add($"@UserId", userId);
                 var procName = $"Proc_GetCountUserFriends";
-                int count = dbConnection.QueryFirstOrDefault(procName, param: parameters, commandType: CommandType.StoredProcedure).Cnt;
+                int count = (int)dbConnection.QueryFirstOrDefault(procName, param: parameters, commandType: CommandType.StoredProcedure).Cnt;
                 return count;
             }
         }
