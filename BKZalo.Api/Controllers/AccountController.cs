@@ -127,7 +127,18 @@ namespace BKZalo.Api.Controllers
         {
             var phoneNumber = User.FindFirstValue(ClaimTypes.Name);
             var acc = (Account)_accountService.GetByProp("PhoneNumber", phoneNumber).Response.Data;
-            var serviceResult = _accountService.Update(account, acc.AccountId);
+
+            if (!String.IsNullOrEmpty(account.UserName))
+            {
+                acc.UserName = account.UserName;
+            }
+
+            if(!String.IsNullOrEmpty(account.AvatarUrl))
+            {
+                acc.AvatarUrl = account.AvatarUrl;
+            }
+
+            var serviceResult = _accountService.Update(acc, acc.AccountId);
             return StatusCode(serviceResult.StatusCode, serviceResult.Response);
         }
     }

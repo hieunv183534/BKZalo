@@ -127,14 +127,24 @@ namespace BKZalo.Api.Controllers
             Post prePost = (Post)_postService.GetById(id).Response.Data;
             if (prePost.AccountId.CompareTo(acc.AccountId) == 0)
             {
-                post.AllMediaUrl = string.Empty;
-                foreach (var url in post.MediaUrls)
+                if(post.MediaUrls != null)
                 {
-                    post.AllMediaUrl += $"{url} ";
+                    prePost.AllMediaUrl = string.Empty;
+                    foreach (var url in post.MediaUrls)
+                    {
+                        prePost.AllMediaUrl += $"{url} ";
+                    }
+                    prePost.AllMediaUrl = prePost.AllMediaUrl.Trim();
                 }
-                post.AllMediaUrl = post.AllMediaUrl.Trim();
 
-                var serviceResult = _postService.Update(post, id);
+                if (!String.IsNullOrEmpty(post.Described))
+                {
+                    prePost.Described = post.Described;
+                }
+
+                prePost.CanComment = true;
+
+                var serviceResult = _postService.Update(prePost, id);
                 return StatusCode(serviceResult.StatusCode, serviceResult.Response);
             }
             else
