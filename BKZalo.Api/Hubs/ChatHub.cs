@@ -59,10 +59,28 @@ namespace BKZalo.Api.Hubs
 
             if (message.ConversationId.Equals(Guid.Empty))
             {
-                var conversation = new Conversation();
-                conversation.AllMemberId = $"{acc.AccountId} {message.ReceiverId}";
-                conversation.ConversationId = Guid.NewGuid();
-                var serviceResult = _conversationService.Add(conversation);
+                Conversation conversation;
+                ServiceResult serviceResult;
+                var sr1 = _conversationService.GetByProp("AllMemberId", $"{acc.AccountId} {message.ReceiverId}");
+                if(sr1.StatusCode == 204)
+                {
+                    conversation = new Conversation();
+                    conversation.AllMemberId = $"{acc.AccountId} {message.ReceiverId}";
+                    conversation.ConversationId = Guid.NewGuid();
+                    serviceResult = _conversationService.Add(conversation);
+                }
+                else if(sr1.StatusCode == 200)
+                {
+                    conversation = (Conversation)sr1.Response.Data;
+                    serviceResult = new ServiceResult();
+                    serviceResult.StatusCode = 201;
+                }
+                else
+                {
+                    conversation = new Conversation();
+                    serviceResult = new ServiceResult();
+                    serviceResult.StatusCode = 500;
+                }
 
                 if(serviceResult.StatusCode != 201)
                 {
