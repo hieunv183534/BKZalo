@@ -168,7 +168,7 @@ namespace BKZalo.Api.Controllers
                     var serviceResult = _postService.Update(post,postId);
                     if(serviceResult.StatusCode == 201)
                     {
-                        return StatusCode(200, new ResponseModel(1000, "OK", new { like = 1 }));
+                        return StatusCode(200, new ResponseModel(1000, "OK", new { like = 1, isLiked= true }));
                     }
                     return StatusCode(serviceResult.StatusCode, serviceResult.Response);
                 }
@@ -176,6 +176,7 @@ namespace BKZalo.Api.Controllers
                 {
                     if (post.AllAccountIdLiked.Contains(acc.AccountId.ToString()))
                     {
+                        var preLike = post.AllAccountIdLiked.Split(" ").Count();
                         post.AllAccountIdLiked += " ";
                         post.AllAccountIdLiked = post.AllAccountIdLiked.Replace(acc.AccountId.ToString()+" ", "");
                         post.AllAccountIdLiked = post.AllAccountIdLiked.Trim();
@@ -184,7 +185,7 @@ namespace BKZalo.Api.Controllers
                         if (serviceResult.StatusCode == 201)
                         {
                             int like = post.AllAccountIdLiked.Split(" ").Count();
-                            return StatusCode(200, new ResponseModel(1000, "OK", new { like = like==1?0:like }));
+                            return StatusCode(200, new ResponseModel(1000, "OK", new { like = preLike== 1?0:like , isLiked= false }));
                         }
                         return StatusCode(serviceResult.StatusCode, serviceResult.Response);
                         
@@ -196,7 +197,7 @@ namespace BKZalo.Api.Controllers
                         if (serviceResult.StatusCode == 201)
                         {
                             int like = post.AllAccountIdLiked.Split(" ").Count();
-                            return StatusCode(200, new ResponseModel(1000, "OK", new { like = like }));
+                            return StatusCode(200, new ResponseModel(1000, "OK", new { like = like, isLiked= true }));
                         }
                         return StatusCode(serviceResult.StatusCode, serviceResult.Response);
                     }
