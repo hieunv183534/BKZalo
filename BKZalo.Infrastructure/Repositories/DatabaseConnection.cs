@@ -15,7 +15,7 @@ namespace BKZalo.Infrastructure.Repositories
         /// </summary>
         public static IDbConnection DbConnection
         {
-            get { return new MySqlConnection("Host=MYSQL5037.site4now.net ;Port=3306 ;Database=db_a7ca4c_bkzalo ; User Id=a7ca4c_bkzalo; Password=Vnvd8788"); }
+            get { return new MySqlConnection("Host=MYSQL5025.site4now.net ;Port=3306 ;Database=db_a845ec_hieunv ; User Id=a845ec_hieunv; Password=Vnvd8788"); }
         }
     }
 }
